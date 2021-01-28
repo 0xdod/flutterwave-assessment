@@ -16,12 +16,11 @@ exports.validateRule = (req, res) => {
 	const { rule, data } = req.body;
 	const error = sanitizeRequestData(req.body);
 	if (error) {
-		res.status(400).json({
+		return res.status(400).json({
 			message: error.message,
 			data: null,
 			status: 'error',
 		});
-		return;
 	}
 	var message, status;
 	if (!isValid(rule, data)) {
@@ -34,12 +33,12 @@ exports.validateRule = (req, res) => {
 	}
 	const respData = {
 		validation: {
-			error: false,
+			error: status === 'error',
 			field: rule.field,
 			field_value: data[rule.field],
 			condition: rule.condition,
 			condition_value: rule.condition_value,
 		},
 	};
-	return res.json({ message, status, respData });
+	return res.json({ message, status, data: respData });
 };
