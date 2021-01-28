@@ -1,13 +1,10 @@
-//var createError = require('http-errors');
 var express = require('express');
-var path = require('path');
-//var logger = require('morgan');
 
 var router = require('./routes');
 
 var app = express();
 
-//app.use(logger('dev'));
+//log requests to console.
 app.use((req, res, next) => {
 	console.log(
 		'[%s] %s %s:%s',
@@ -18,13 +15,12 @@ app.use((req, res, next) => {
 	);
 	next();
 });
-app.use(express.json());
 
+app.use(express.json());
 app.use(router);
 
 //catch 404 and forward to error handler
 app.use(function (req, res, next) {
-	//next(createError(404));
 	next(new Error('404'));
 });
 
@@ -36,14 +32,12 @@ app.use(function (err, req, res, next) {
 
 	// render the error page
 	res.status(err.status || 500);
-	var response = {};
+	var response = { status: 'error', data: null };
 	console.error(err);
 	if (err.type === 'entity.parse.failed') {
-		response = {
-			message: 'Invalid JSON payload passed.',
-			status: 'error',
-			data: null,
-		};
+		response.message = 'Invalid JSON payload passed.';
+	} else {
+		response.message = 'Internal server error.';
 	}
 	res.json(response);
 });
