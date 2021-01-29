@@ -45,7 +45,7 @@ describe('POST /validate-rule controller', () => {
 		},
 	};
 
-	it('should approriate message on error', () => {
+	it('should return success response', () => {
 		var fakeResponse = {
 			message: 'field missions successfully validated.',
 			status: 'success',
@@ -72,7 +72,7 @@ describe('POST /validate-rule controller', () => {
 		validateRule(req, res);
 		expect(res.statusCode).toBe(400);
 	});
-	it('should return approriate response on error', () => {
+	it('should return missing field error', () => {
 		req.body = {
 			rule: {
 				field: '5',
