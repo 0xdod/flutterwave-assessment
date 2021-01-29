@@ -17,7 +17,7 @@ This is a simple API built with expressJs for the flutterwave intern task. It va
 -   run npm start
 -   use your favorite API testing tools to send requests.
     OR
-    You can test it live via [this url](https://)
+    You can test it live via [this url](https://murmuring-anchorage-40031.herokuapp.com/)
 
 ### Testing
 
