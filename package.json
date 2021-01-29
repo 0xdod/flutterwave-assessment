@@ -8,6 +8,9 @@
     "test": "mocha **/*.test.js",
     "test-watch": "nodemon --exec \"npm test\""
   },
+  "engines": {
+    "node": "v14.15.3"
+  },
   "author": "Damilola Dolor",
   "license": "ISC",
   "devDependencies": {
